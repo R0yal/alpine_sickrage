@@ -6,7 +6,7 @@ dir='/opt'
 echo 'Checking dependencies'
 apk add git python
 # Creates sickrage user if need be
-if [ "$(grep "$user" /etc/passwd)" -z ]; then
+if [ -z "$(grep "$user" /etc/passwd)" ]; then
   echo 'Creating SickRage user'
   adduser -S $user
 else
