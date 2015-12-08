@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 user='sickrage'
 group='nogroup'
 dir='/opt'
