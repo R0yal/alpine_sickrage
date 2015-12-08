@@ -22,6 +22,7 @@ if [ ! -d "$dir/sickrage" ]; then
   echo 'Cloning SickRage'
   git clone https://github.com/SiCKRAGETV/SickRage.git /opt/sickrage
 elif [ -d "$dir/sickrage/.git" ]; then
+  echo 'Updating sickrage'
   cd $dir/sickrage
   git pull
 else
@@ -48,7 +49,7 @@ if [ -d /etc/conf.d ] && [ ! -f /etc/conf.d/sickrage ]; then
   SICKRAGE_DIR=/opt/sickrage
   SICKRAGE_DATADIR=/opt/sickrage
   SICKRAGE_CONFDIR=/opt/sickrage
-  PATH_TO_PYTHON_2=/usr/bin/python.2.7' > /etc/conf.d/sickrage
+  PATH_TO_PYTHON_2=/usr/bin/python2.7' > /etc/conf.d/sickrage
 fi
 echo 'Changing SickRage Directory ownership'
 chown -R $user:$group $dir/sickrage
