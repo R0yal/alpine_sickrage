@@ -35,7 +35,7 @@ else
   echo 'Could not find "SickRage.py". Exiting!'
   exit 1
 fi
-echo 'Copying init script to /etc'
+echo 'Copying init script to /etc/init.d'
 if [ -f "$dir/sickrage/runscripts/init.gentoo" ]; then
   cp $dir/sickrage/runscripts/init.gentoo /etc/init.d/sickrage
 else
@@ -45,11 +45,11 @@ fi
 echo 'Creating configuration file for SickRage init script'
 if [ -d /etc/conf.d ] && [ ! -f /etc/conf.d/sickrage ]; then
   echo 'SICKRAGE_USER=sickrage
-  SICKRAGE_GROUP=nogroup
-  SICKRAGE_DIR=/opt/sickrage
-  SICKRAGE_DATADIR=/opt/sickrage
-  SICKRAGE_CONFDIR=/opt/sickrage
-  PATH_TO_PYTHON_2=/usr/bin/python2.7' > /etc/conf.d/sickrage
+SICKRAGE_GROUP=nogroup
+SICKRAGE_DIR=/opt/sickrage
+SICKRAGE_DATADIR=/opt/sickrage
+SICKRAGE_CONFDIR=/opt/sickrage
+PATH_TO_PYTHON_2=/usr/bin/python2.7' > /etc/conf.d/sickrage
 fi
 echo 'Changing SickRage Directory ownership'
 chown -R $user:$group $dir/sickrage
