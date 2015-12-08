@@ -6,7 +6,7 @@ dir='/opt'
 echo 'Installing dependencies'
 apk add git python
 echo 'Creating SickRage user'
-if [[ "$(grep "$user" /etc/passwd|wc -l)" -eq 0]]; then
+if [ "$(grep "$user" /etc/passwd|wc -l)" -eq 0 ]; then
   adduser -S $user
 else
   echo 'SickRage user already exists: ' $user
