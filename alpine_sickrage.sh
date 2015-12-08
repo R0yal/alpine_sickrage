@@ -28,9 +28,9 @@ elif [ -d "$dir/sickrage/.git" ]; then
 else
   echo 'SickRage directory already exists and is not a git repo'
 fi
-echo 'Running SickRage for 10 seconds'
-if [ -f "$dir/SickBeard.py" ]; then
-  timeout 10 python $dir/sickrage/SickRage.py
+if [ -f "$dir/sickrage/SickBeard.py" ]; then
+  echo 'Running SickRage for 10 seconds'
+  timeout 10 python $dir/sickrage/SickBeard.py
 else
   echo 'Could not find "SickRage.py". Exiting!'
   exit 1
