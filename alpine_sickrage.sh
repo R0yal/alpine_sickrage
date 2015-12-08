@@ -2,24 +2,31 @@
 user='sickrage'
 group='nogroup'
 dir='/opt'
-
-echo 'Installing dependencies'
+# Installs dependenices for SickRage
+echo 'Checking dependencies'
 apk add git python
-echo 'Creating SickRage user'
-if [ $(grep "$user" /etc/passwd|wc -l) -z ]; then
+# Creates sickrage user if need be
+if [ "$(grep "$user" /etc/passwd)" -z ]; then
+  echo 'Creating SickRage user'
   adduser -S $user
 else
   echo 'SickRage user already exists: ' $user
 fi
-echo 'Creating /opt directory'
+# Creates /opt directory if need be
 if [ ! -d "$dir" ]; then
+  echo 'Creating /opt directory'
   mkdir /opt
 fi
-echo 'Cloning SickRage'
+# Clones sickrage or updates sickrage directory if a git repo
 if [ ! -d "$dir/sickrage" ]; then
+  echo 'Cloning SickRage'
   git clone https://github.com/SiCKRAGETV/SickRage.git /opt/sickrage
+elif [ -d "$dir/sickrage/.git" ]; then
+  cd $dir/sickrage
+  git pull
+  cd -
 else
-  echo 'SickRage directory already exists.'
+  echo 'SickRage directory already exists and is not a git repo'
 fi
 echo 'Running SickRage for 10 seconds'
 if [ -f "$dir/SickBeard.py" ]; then
